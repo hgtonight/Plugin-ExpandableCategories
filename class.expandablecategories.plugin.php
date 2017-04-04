@@ -16,8 +16,8 @@
 $PluginInfo['ExpandableCategories'] = array(
 	'Name' => 'Expandable Categories',
 	'Description' => 'Turns the Categories panel into a collapsible list. Inspired by x00\'s Category Accordion plugin.',
-	'Version' => '1.2',
-	'RequiredApplications' => array('Vanilla' => '2.0.18.8'),
+	'Version' => '1.3',
+	'RequiredApplications' => array('Vanilla' => '2.2'),
 	'Author' => "Zachary Doll",
 	'AuthorEmail' => 'hgtonight@gmail.com',
 	'AuthorUrl' => 'http://www.daklutz.com',
@@ -26,10 +26,10 @@ $PluginInfo['ExpandableCategories'] = array(
 
 class ExpandableCategoriesPlugin extends Gdn_Plugin {
 	public function Base_Render_Before($Sender) {
-		if(GetValue('Panel',$Sender->Assets) && GetValue('CategoriesModule',$Sender->Assets['Panel']) ) {
+		if(val('Panel',$Sender->Assets) && val('CategoriesModule',$Sender->Assets['Panel']) ) {
 			$Sender->AddDefinition('ExpandActiveOnLoad',C('Plugins.ExpandableCategories.ExpandActiveOnLoad', TRUE));
-			$Sender->AddJsFile($this->GetResource('js/expandablecategories.js', FALSE, FALSE));
-			$Sender->AddCSSFile($this->GetResource('design/expandablecategories.css', FALSE, FALSE));
+            $Sender->AddJsFile('js/expandablecategories.js', 'plugins/ExpandableCategories');
+            $Sender->AddCSSFile('design/expandablecategories.css', 'plugins/ExpandableCategories');
 		}
 	}
 }
